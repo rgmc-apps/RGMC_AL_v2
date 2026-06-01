@@ -1,0 +1,12 @@
+tableextension 50102 "Transfer Header Ext" extends "Transfer Header"
+{
+    fields
+    {
+        field(50100; Remarks; Text[250])
+        {
+            Caption = 'Remarks';
+            DataClassification = ToBeClassified;
+        }
+    }
+}
+
