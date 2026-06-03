@@ -23,6 +23,7 @@ pageextension 50101 ItemListExt extends "Item List"
         LatestRetailPrice := 0;
 
         PriceLine.Reset();
+        PriceLine.SetFilter("Assign-to No.", '<>%1', 'IC');
         PriceLine.SetRange("Product No.", Rec."No.");
         PriceLine.SetCurrentKey("Product No.", "Starting Date");
         PriceLine.SetAscending("Starting Date", false);

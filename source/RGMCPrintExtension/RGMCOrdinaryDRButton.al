@@ -18,6 +18,20 @@ pageextension 50123 MyWhseShipmentExt extends "Warehouse Shipment"
                     REPORT.RunModal(Report::"Warehouse Shipment", true, false, WhseShptHeader);
                 end;
             }
+            action(warehouseShipmentSMDR)
+            {
+                ApplicationArea = All;
+                Caption = 'Print SMDR';
+                Image = Print;
+
+                trigger OnAction()
+                var
+                    WhseShptHeader: Record "Warehouse Shipment Header";
+                begin
+                    WhseShptHeader.SetRange("No.", Rec."No.");
+                    REPORT.RunModal(Report::"Whse Shipment SMDR", true, false, WhseShptHeader);
+                end;
+            }
             action(warehouseShipmentLMDR)
             {
                 ApplicationArea = All;

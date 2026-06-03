@@ -24,6 +24,7 @@ pageextension 50109 TransferOrderSubformExt extends "Transfer Order Subform"
 
         if Rec."Item No." <> '' then begin
             PriceLine.Reset();
+            PriceLine.SetFilter("Assign-to No.", '<>%1', 'IC');
             PriceLine.SetRange("Product No.", Rec."Item No.");
             PriceLine.SetCurrentKey("Product No.", "Starting Date");
             PriceLine.SetAscending("Starting Date", false);
