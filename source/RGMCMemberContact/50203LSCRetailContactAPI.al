@@ -142,6 +142,12 @@ page 50203 "LSC Retail Contact API"
                 Caption = 'lastModifiedDateTime';
                 Editable = false;
             }
+
+            // --- Picture ---
+            field(picture; Rec.Image)
+            {
+                Caption = 'picture';
+            }
         }
     }
 
