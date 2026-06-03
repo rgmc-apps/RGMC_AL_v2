@@ -1,0 +1,32 @@
+# ─── Compiled AL Output ───────────────────────────────────────────────────────
+*.app
+
+# ─── AL Dependency Packages ───────────────────────────────────────────────────
+.alpackages/
+.altestrunner/
+
+# ─── AL Compiler Cache ────────────────────────────────────────────────────────
+.alcache/
+.vscode/.alcache/
+
+# ─── VS Code ──────────────────────────────────────────────────────────────────
+.vscode/launch.json
+.vscode/rad.json
+.vscode/*.log
+
+# ─── Handoff & Claude Files ───────────────────────────────────────────────────
+handoff.md
+MEMORY.md
+.claude/
+memory/
+
+# ─── Windows ──────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ─── Logs & Temp ──────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak

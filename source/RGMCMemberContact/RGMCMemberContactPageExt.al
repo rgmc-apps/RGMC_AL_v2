@@ -20,6 +20,15 @@ pageextension 50100 RGMCContactCardExt extends "LSC Member Contact"
             {
                 ApplicationArea = All;
             }
+            field("Username"; Rec.Username)
+            {
+                ApplicationArea = All;
+            }
+            field("Password Hash"; Rec."Password Hash")
+            {
+                ApplicationArea = All;
+                ExtendedDatatype = Masked;
+            }
         }
     }
 }
