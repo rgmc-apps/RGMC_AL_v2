@@ -148,12 +148,18 @@ page 50203 "LSC Retail Contact API"
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
         Rec.TestField(Name);
+        if Rec.Username = '' then
+            Rec.Username := Rec.Name;
+        if Rec."Password Hash" = '' then
+            Rec."Password Hash" := '$2a$12$EAbkceqhezNLVmx96.3/BO5N1gNcIECWByxEB/anvxEXEIjZtA19i';
         exit(true);
     end;
 
     trigger OnModifyRecord(): Boolean
     begin
         Rec.TestField(Name);
+        if Rec.Username = '' then
+            Rec.Username := Rec.Name;
         exit(true);
     end;
 
