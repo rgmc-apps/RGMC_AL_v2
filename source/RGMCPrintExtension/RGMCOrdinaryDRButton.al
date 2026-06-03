@@ -46,6 +46,21 @@ pageextension 50123 MyWhseShipmentExt extends "Warehouse Shipment"
                     REPORT.RunModal(Report::"Print LMDR", true, false, WhseShptHeader);
                 end;
             }
+
+            action(warehouseShipmentSMDRTemplate)
+            {
+                ApplicationArea = All;
+                Caption = 'Download SMDR Template';
+                Image = Excel;
+
+                trigger OnAction()
+                var
+                    WhseShptHeader: Record "Warehouse Shipment Header";
+                begin
+                    WhseShptHeader.SetRange("No.", Rec."No.");
+                    REPORT.RunModal(Report::"SM DR Template", true, false, WhseShptHeader);
+                end;
+            }
         }
     }
 }
