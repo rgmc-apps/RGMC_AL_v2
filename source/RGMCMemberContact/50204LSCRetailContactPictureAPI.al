@@ -56,7 +56,7 @@ page 50204 "LSC Retail Contact Picture API"
             end;
     end;
 
-    trigger OnBeforeModify()
+    trigger OnModifyRecord(): Boolean
     var
         Base64Convert: Codeunit "Base64 Convert";
         TempBlob: Codeunit "Temp Blob";
@@ -69,6 +69,7 @@ page 50204 "LSC Retail Contact Picture API"
             TempBlob.CreateInStream(InStr);
             Rec.Image.ImportStream(InStr, 'picture');
         end;
+        exit(true);
     end;
 
     var
