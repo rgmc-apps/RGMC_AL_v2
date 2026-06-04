@@ -29,6 +29,10 @@ report 50104 "SM DR Template"
                 {
                     Caption = 'Store Code';
                 }
+                column(Vendor_Code; VendorCode)
+                {
+                    Caption = 'Vendor Code';
+                }
                 column(Expected_Delive; ExpectedDelive)
                 {
                     Caption = 'Expected Delive';
@@ -69,6 +73,11 @@ report 50104 "SM DR Template"
                     SetExpectedDelivery();
                     SetStoreCode();
                     SetSMCodeDimensions();
+
+                    // if not FileNameSet then begin
+                    //     BuildExcelFileName();
+                    //     FileNameSet := true;
+                    // end;
 
                     SKUKey := GetSKU("Item No.");
 
@@ -116,6 +125,7 @@ report 50104 "SM DR Template"
 
     var
         DRNo: Code[35];
+        VendorCode: Code[20];
         StoreCode: Code[20];
         ExpectedDelive: Text[20];
         DeptCode: Code[20];
@@ -124,6 +134,8 @@ report 50104 "SM DR Template"
         SKU: Text[100];
         Quantity: Decimal;
         ItemReferenceTypeNo: Code[20];
+        ExcelFileName: Text;
+        FileNameSet: Boolean;
 
     trigger OnInitReport()
     begin
@@ -133,6 +145,7 @@ report 50104 "SM DR Template"
     local procedure ClearLineValues()
     begin
         DRNo := '';
+        VendorCode := '';
         StoreCode := '';
         ExpectedDelive := '';
         DeptCode := '';
@@ -163,6 +176,21 @@ report 50104 "SM DR Template"
             ExpectedDelive := Format(ExpectedDate, 0, '<Month,2><Day,2><Year,2>');
     end;
 
+    // local procedure BuildExcelFileName()
+    // var
+    //     UploadDateText: Text;
+    // begin
+
+    //     UploadDateText := Format(Today, 0, '<Month,2><Day,2><Year4>');
+    //     ExcelFileName := 'CSGRCW' + '_' +
+    //                      VendorCode + '_' +
+    //                      StoreCode + '_' +
+    //                      DRNo + '_' +
+    //                      UploadDateText;
+
+    //     CurrReport.Caption := ExcelFileName;
+    // end;
+
     local procedure SetStoreCode()
     var
         Location: Record Location;
@@ -176,6 +204,7 @@ report 50104 "SM DR Template"
 
         if Location.Get(DestinationNo) then begin
             StoreCode := Location."Store Code";
+            VendorCode := Location."RAC_VendorCode";
 
         end;
     end;
