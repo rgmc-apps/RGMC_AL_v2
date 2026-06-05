@@ -33,15 +33,15 @@ report 50104 "SM DR Template"
                 {
                     Caption = 'Vendor Code';
                 }
-                column(Expected_Delive; ExpectedDelive)
+                column(Expected_Delivery; ExpectedDelivery)
                 {
-                    Caption = 'Expected Delive';
+                    Caption = 'Expected Delivery';
                 }
                 column(Dept_Code; DeptCode)
                 {
                     Caption = 'Dept. Code';
                 }
-                column(Sub_Dept_Co; SubDeptCode)
+                column(Sub_Dept_Code; SubDeptCode)
                 {
                     Caption = 'Sub-Dept Co';
                 }
@@ -127,7 +127,7 @@ report 50104 "SM DR Template"
         DRNo: Code[35];
         VendorCode: Code[20];
         StoreCode: Code[20];
-        ExpectedDelive: Text[20];
+        ExpectedDelivery: Text[20];
         DeptCode: Code[20];
         SubDeptCode: Code[20];
         ClassCode: Code[20];
@@ -147,7 +147,7 @@ report 50104 "SM DR Template"
         DRNo := '';
         VendorCode := '';
         StoreCode := '';
-        ExpectedDelive := '';
+        ExpectedDelivery := '';
         DeptCode := '';
         SubDeptCode := '';
         ClassCode := '';
@@ -173,7 +173,7 @@ report 50104 "SM DR Template"
             ExpectedDate := WhseShipmentHeader."Posting Date";
 
         if ExpectedDate <> 0D then
-            ExpectedDelive := Format(ExpectedDate, 0, '<Month,2><Day,2><Year,2>');
+            ExpectedDelivery := Format(ExpectedDate, 0, '<Month,2><Day,2><Year,2>');
     end;
 
     // local procedure BuildExcelFileName()
