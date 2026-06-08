@@ -87,7 +87,7 @@ pageextension 50123 MyWhseShipmentExt extends "Warehouse Shipment"
 
                     if WhseShptHeader.FindFirst() then begin
                         DRNo := WhseShptHeader."External Document No.";
-                        UploadDate := Format(Today, 0, '<Year4><Month,2><Day,2>');
+                        UploadDate := Format(Today, 0, '<Month,2><Day,2><Year4>');
                     end;
 
                     ReportFileName := StrSubstNo('CSGRCW_%1_%2_%3_%4.xlsx',

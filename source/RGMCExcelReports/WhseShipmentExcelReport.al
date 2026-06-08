@@ -128,9 +128,9 @@ report 50104 "SM DR Template"
         VendorCode: Code[20];
         StoreCode: Code[20];
         ExpectedDelivery: Text[20];
-        DeptCode: Code[20];
-        SubDeptCode: Code[20];
-        ClassCode: Code[20];
+        DeptCode: Integer;
+        SubDeptCode: Integer;
+        ClassCode: Integer;
         SKU: Text[100];
         Quantity: Decimal;
         ItemReferenceTypeNo: Code[20];
@@ -148,9 +148,9 @@ report 50104 "SM DR Template"
         VendorCode := '';
         StoreCode := '';
         ExpectedDelivery := '';
-        DeptCode := '';
-        SubDeptCode := '';
-        ClassCode := '';
+        DeptCode := 0;
+        SubDeptCode := 0;
+        ClassCode := 0;
         SKU := '';
         Quantity := 0;
     end;
@@ -210,25 +210,21 @@ report 50104 "SM DR Template"
     end;
 
     local procedure SetSMCodeDimensions()
-    begin
-        DeptCode := GetSMCodeDimensionValueName('DEPT');
-        SubDeptCode := GetSMCodeDimensionValueName('SUB_DEPT');
-        ClassCode := GetSMCodeDimensionValueName('CLASS');
-    end;
-
-    local procedure GetSMCodeDimensionValueName(DimensionValueCode: Code[20]): Code[20]
     var
-        DimensionValue: Record "Dimension Value";
+        Location: Record Location;
+        Customer: Record Customer;
+        DestinationNo: Code[20];
     begin
-        DimensionValue.SetRange("Dimension Code", 'SM CODE');
-        DimensionValue.SetRange(Code, DimensionValueCode);
+        DestinationNo := WhseShipmentLine."Destination No.";
 
-        if DimensionValue.FindFirst() then
-            exit(CopyStr(DimensionValue.Name, 1, 20));
-
-        exit('');
+        Customer.Reset();
+        Customer.SetRange("Location Code", DestinationNo);
+        if Customer.FindFirst() then begin
+            DeptCode := Customer."Dept Code";
+            SubDeptCode := Customer."Sub Dept Code";
+            ClassCode := Customer."Class Code";
+        end;
     end;
-
 
 
 
