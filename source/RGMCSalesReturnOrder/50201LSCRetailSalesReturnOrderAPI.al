@@ -205,6 +205,12 @@ page 50201 "LSC Retail SRO API"
                 Caption = 'shortcutDimension2Code';
             }
 
+            // --- Custom Fields ---
+            field(submittedBy; Rec."Submitted By")
+            {
+                Caption = 'submittedBy';
+            }
+
             // --- Audit ---
             field(lastModifiedDateTime; Rec.SystemModifiedAt)
             {
