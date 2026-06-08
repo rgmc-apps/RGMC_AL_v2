@@ -148,6 +148,15 @@ page 50203 "LSC Retail Contact API"
             {
                 Caption = 'picture';
             }
+
+            // --- Brand Tags ---
+            part(contactBrandTags; "RGMC Contact Brand Tag API")
+            {
+                Caption = 'contactBrandTags';
+                EntityName = 'contactBrandTag';
+                EntitySetName = 'contactBrandTags';
+                SubPageLink = "Contact No." = field("No.");
+            }
         }
     }
 

@@ -18,5 +18,14 @@ pageextension 50112 "RGMC Contact Card Ext" extends "Contact Card"
                 ExtendedDatatype = Masked;
             }
         }
+        addlast(content)
+        {
+            part(BrandTags; "RGMC Contact Brand Tags")
+            {
+                ApplicationArea = All;
+                Caption = 'Brand Tags';
+                SubPageLink = "Contact No." = field("No.");
+            }
+        }
     }
 }
