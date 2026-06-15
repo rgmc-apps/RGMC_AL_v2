@@ -2,6 +2,17 @@ pageextension 50132 "Posted Whse Receipt Ext" extends "Posted Whse. Receipt"
 {
     layout
     {
+        addLast(General)
+        {
+            field("Device Id / Owner"; Rec."Device Id / Owner")
+            {
+                ApplicationArea = All;
+                Caption = 'Device Id / Owner';
+                Editable = false;
+            }
+        }
+
+
         addlast(Content)
         {
             group("Grand Total")
