@@ -1,0 +1,11 @@
+tableextension 50108 "RGMC Warehouse Receipt Ext" extends "Warehouse Receipt Header"
+{
+    fields
+    {
+        field(50100; "Device Id / Owner"; Text[100])
+        {
+            Caption = 'Device Id / Owner';
+            DataClassification = SystemMetadata;
+        }
+    }
+}
