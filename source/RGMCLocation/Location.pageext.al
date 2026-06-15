@@ -2,7 +2,7 @@ pageextension 50133 "RGMCLocationCardExt" extends "Location Card"
 {
     layout
     {
-        addafter(RAC_VendorCode)
+        addlast(General)
         {
             field("Store Code"; Rec."Store Code")
             {
