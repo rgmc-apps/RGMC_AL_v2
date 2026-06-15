@@ -40,12 +40,6 @@
             "name": "System Application",
             "publisher": "Microsoft",
             "version": "27.5.46862.46929"
-        },
-        {
-            "id": "ebbae15e-25ec-4f5a-a35f-64773c7e0f57",
-            "name": "RGMC Customization",
-            "publisher": "Associates 365",
-            "version": "26.0.0.20"
         }
 
   ],

@@ -3,7 +3,6 @@ page 50208 "RGMC Contact Brand Tags"
     PageType = ListPart;
     Caption = 'Brand Tags';
     SourceTable = "RGMC Contact Brand Tag";
-    AutoSplitKey = true;
     DelayedInsert = true;
 
     layout
@@ -16,6 +15,15 @@ page 50208 "RGMC Contact Brand Tags"
                 {
                     ApplicationArea = All;
                     Caption = 'Brand Code';
+
+                    trigger OnValidate()
+                    var
+                        ItemFamily: Record "LSC Item Family";
+                    begin
+                        BrandDescription := '';
+                        if ItemFamily.Get(Rec."Brand Code") then
+                            BrandDescription := ItemFamily.Description;
+                    end;
                 }
                 field(Description; BrandDescription)
                 {
