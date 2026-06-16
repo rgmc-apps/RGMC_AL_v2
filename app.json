@@ -29,11 +29,17 @@
             "publisher": "Associates 365",
             "version": "27.1.0.4"
         },
-        {            
+        {
             "id": "dc4b3ddf-1b1b-4caa-8683-3c9e1b6d322d",
             "name": "PHTAX",
             "publisher": "Associates 365",
             "version": "27.3.0.0"
+        },
+        {
+            "id": "ebbae15e-25ec-4f5a-a35f-64773c7e0f57",
+            "name": "RGMC Customization",
+            "publisher": "Associates 365",
+            "version": "26.0.0.20"
         },
         {
             "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",

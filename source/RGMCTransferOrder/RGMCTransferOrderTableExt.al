@@ -7,11 +7,6 @@ tableextension 50102 "Transfer Header Ext" extends "Transfer Header"
             Caption = 'Remarks';
             DataClassification = ToBeClassified;
         }
-        field(50101; "Barcode No."; Code[50])
-        {
-            Caption = 'Barcode No.';
-            DataClassification = CustomerContent;
-        }
     }
 }
 
