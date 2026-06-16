@@ -17,10 +17,5 @@ tableextension 50107 "RGMCCustomerExt" extends Customer
             Caption = 'Class Code';
             DataClassification = CustomerContent;
         }
-        field(50103; RAC_StoreCode; Code[20])
-        {
-            Caption = 'Store Code';
-            DataClassification = CustomerContent;
-        }
     }
 }

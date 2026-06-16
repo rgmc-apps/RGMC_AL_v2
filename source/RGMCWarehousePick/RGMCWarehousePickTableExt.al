@@ -13,31 +13,5 @@ tableextension 50103 "RGMC Warehouse Pick Ext" extends "Warehouse Activity Heade
             Caption = 'No. of Box(es)';
             DataClassification = SystemMetadata;
         }
-        field(50102; "Barcode No."; Code[50])
-        {
-            Caption = 'Barcode No.';
-            DataClassification = CustomerContent;
-        }
-        field(50103; "Calculated Quantity"; Decimal)
-        {
-            Caption = 'Calculated Quantity';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding" where("No." = field("No."), "Action Type" = const(Take)));
-            Editable = false;
-        }
-        field(50104; "Calculated Qty Handle"; Decimal)
-        {
-            Caption = 'Calculated Qty Handle';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. to Handle" where("No." = field("No."), "Action Type" = const(Take)));
-            Editable = false;
-        }
-        field(50105; "Calculated Qty Handled"; Decimal)
-        {
-            Caption = 'Calculated Qty Handled';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Handled" where("No." = field("No."), "Action Type" = const(Take)));
-            Editable = false;
-        }
     }
 }
