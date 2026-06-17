@@ -1,8 +1,8 @@
 {
   "id": "495bc7e2-aafe-495d-89ea-6bc4dd6c02ec",
-  "name": "RGMC Glenn Eregia",
+  "name": "RGMC Base Extension",
   "publisher": "RGMC Publisher",
-  "version": "1.2.0.2",
+  "version": "1.2.0.3",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -27,7 +27,7 @@
             "id": "1f4a208a-3e92-4d5c-ada4-effa705d199a",
             "name": "PHCAS",
             "publisher": "Associates 365",
-            "version": "27.1.0.4"
+            "version": "27.1.0.0"
         },
         {
             "id": "dc4b3ddf-1b1b-4caa-8683-3c9e1b6d322d",
