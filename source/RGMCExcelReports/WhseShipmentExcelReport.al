@@ -173,7 +173,11 @@ report 50104 "SM DR Template"
             ExpectedDate := WhseShipmentHeader."Posting Date";
 
         if ExpectedDate <> 0D then
-            ExpectedDelivery := Format(ExpectedDate, 0, '<Month,2><Day,2><Year,2>');
+            ExpectedDelivery := Format(
+                CalcDate('<+1M>', ExpectedDate),
+                0,
+                '<Month,2><Day,2><Year,2>'
+            );
     end;
 
     // local procedure BuildExcelFileName()

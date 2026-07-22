@@ -171,10 +171,14 @@ report 50105 "SM Pull out Template"
     begin
 
         if ExpectedDate = 0D then
-            ExpectedDate := TransferHeader."Posting Date" + 15;
+            ExpectedDate := TransferHeader."Posting Date";
 
         if ExpectedDate <> 0D then
-            ExpectedPullOutDate := Format(ExpectedDate, 0, '<Month,2><Day,2><Year,2>');
+            ExpectedPullOutDate := Format(
+            CalcDate('<+1M>', ExpectedDate),
+            0,
+            '<Month,2><Day,2><Year,2>'
+        );
 
     end;
 
