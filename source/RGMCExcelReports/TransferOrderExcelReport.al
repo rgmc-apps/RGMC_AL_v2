@@ -224,6 +224,13 @@ report 50105 "SM Pull out Template"
         ItemRef.SetRange("Item No.", ItemNo);
         ItemRef.SetRange("Reference Type", ItemRef."Reference Type"::"Bar Code");
         ItemRef.SetRange("Reference Type No.", 'SM-DS');
+        ItemRef.SetFilter("Starting Date", '..%1', TransferHeader."Posting Date");
+
+        ItemRef.SetCurrentKey(
+            "Item No.",
+            "Starting Date");
+
+        ItemRef.Ascending(false);
 
         if ItemRef.FindFirst() then begin
             if ItemRef.Description <> '' then

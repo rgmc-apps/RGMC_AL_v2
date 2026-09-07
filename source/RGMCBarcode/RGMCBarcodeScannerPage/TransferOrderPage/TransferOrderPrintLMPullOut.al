@@ -54,6 +54,13 @@ report 50102 "Print LMPullOut"
                     ItemRef.SetRange("Item No.", "Item No.");
                     ItemRef.SetRange("Reference Type", ItemRef."Reference Type"::"Bar Code");
                     ItemRef.SetRange("Reference Type No.", 'LM');
+                    ItemRef.SetFilter("Starting Date", '..%1', TransferHeader."Posting Date");
+
+                    ItemRef.SetCurrentKey(
+                        "Item No.",
+                        "Starting Date");
+
+                    ItemRef.Ascending(false);
 
                     if ItemRef.FindFirst() then begin
                         SKU := ItemRef.Description;
