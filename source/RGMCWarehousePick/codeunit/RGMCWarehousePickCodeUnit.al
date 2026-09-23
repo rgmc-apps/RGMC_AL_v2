@@ -6,8 +6,13 @@ codeunit 50120 "RGMCRegisterPickAuth"
     var
         LoginPage: Page "Register Pick Login";
         WarehouseActivityHeader: Record "Warehouse Activity Header";
+        CompanyContext: Codeunit "RGMC Company Context";
         EnteredUserID: Code[50];
     begin
+        // Authentication only applies to the Covent Garden company
+        if not CompanyContext.IsCoventGarden() then
+            exit;
+
         if LoginPage.RunModal() <> Action::OK then begin
             Message('Authentication failed. Register Pick canceled.');
             IsHandled := true;

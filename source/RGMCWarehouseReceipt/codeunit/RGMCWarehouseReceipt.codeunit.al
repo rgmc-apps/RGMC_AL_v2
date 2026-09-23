@@ -6,10 +6,15 @@ codeunit 50121 "RGMCRegisterReceiptAuth"
     var
         LoginPage: Page "Register Pick Login";
         WarehouseReceiptHeader: Record "Warehouse Receipt Header";
+        CompanyContext: Codeunit "RGMC Company Context";
         EnteredUserID: Code[50];
     begin
         // Skip if running in preview/test mode
         if PreviewMode then
+            exit;
+
+        // Authentication only applies to the Covent Garden company
+        if not CompanyContext.IsCoventGarden() then
             exit;
 
         if LoginPage.RunModal() <> Action::OK then
