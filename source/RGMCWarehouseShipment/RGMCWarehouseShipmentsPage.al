@@ -4,23 +4,17 @@ pageextension 50111 RGMCWarehouseShipmentsPage extends "Warehouse Shipment List"
     {
         addafter("No.")
         {
-            field("Source No."; SourceNo)
+            field("RGMC Source No."; Rec."RGMC Source No.")
             {
                 ApplicationArea = All;
-                Caption = 'Source No.';
-                Editable = false;
             }
-            field("Destination No."; DestinationNo)
+            field("RGMC Destination No."; Rec."RGMC Destination No.")
             {
                 ApplicationArea = All;
-                Caption = 'Destination No.';
-                Editable = false;
             }
-            field("Destination Name"; DestinationName)
+            field("RGMC Destination Name"; Rec."RGMC Destination Name")
             {
                 ApplicationArea = All;
-                Caption = 'Destination Name';
-                Editable = false;
             }
             field("External Document No."; Rec."External Document No.")
             {
@@ -29,33 +23,4 @@ pageextension 50111 RGMCWarehouseShipmentsPage extends "Warehouse Shipment List"
             }
         }
     }
-
-    var
-        WhseShipmentLine: Record "Warehouse Shipment Line";
-        Location: Record Location;
-        DestinationNo: Code[20];
-        DestinationName: Text[100];
-        SourceNo: Code[20];
-
-    trigger OnAfterGetRecord()
-    begin
-        DestinationNo := '';
-        DestinationName := '';
-        SourceNo := '';
-
-        WhseShipmentLine.Reset();
-        WhseShipmentLine.SetCurrentKey("No.", "Line No.");
-        WhseShipmentLine.SetRange("No.", Rec."No.");
-        if WhseShipmentLine.FindLast() then begin
-            DestinationNo := WhseShipmentLine."Destination No.";
-            SourceNo := WhseShipmentLine."Source No.";
-        end;
-
-        if DestinationNo <> '' then begin
-            if Location.Get(DestinationNo) then
-                DestinationName := Location.Name
-            else
-                DestinationName := '';
-        end;
-    end;
 }

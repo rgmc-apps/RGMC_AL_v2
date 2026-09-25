@@ -13,5 +13,12 @@ tableextension 50103 "RGMC Warehouse Pick Ext" extends "Warehouse Activity Heade
             Caption = 'No. of Box(es)';
             DataClassification = SystemMetadata;
         }
+        // Stored (not a FlowField) so it can be sorted on the list page; filled by codeunit 50126.
+        field(50102; "RGMC Destination Name"; Text[100])
+        {
+            Caption = 'Destination Name';
+            DataClassification = CustomerContent;
+            Editable = false;
+        }
     }
 }
