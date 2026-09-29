@@ -69,6 +69,9 @@ codeunit 50124 "RGMC Whse. Shpt. Source/Dest."
                 if Location.Get(DestinationNo) then
                     exit(Location.Name);
         end;
+        // Fallback kept from the original page logic, which always treated Destination No. as a location.
+        if Location.Get(DestinationNo) then
+            exit(Location.Name);
         exit('');
     end;
 }

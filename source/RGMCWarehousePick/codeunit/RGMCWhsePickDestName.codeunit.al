@@ -12,6 +12,18 @@ codeunit 50126 "RGMC Whse. Pick Dest. Name"
     end;
 
     procedure UpdateAllPicks()
+    begin
+        UpdatePicks(false);
+    end;
+
+    // Called when the Warehouse Picks list opens, so picks created before this field existed
+    // get a name even if the upgrade code has not run (e.g. same-version republish).
+    procedure FillBlankNames()
+    begin
+        UpdatePicks(true);
+    end;
+
+    local procedure UpdatePicks(OnlyBlank: Boolean)
     var
         WhseActivityHeader: Record "Warehouse Activity Header";
         WhseActivityLine: Record "Warehouse Activity Line";
@@ -19,6 +31,8 @@ codeunit 50126 "RGMC Whse. Pick Dest. Name"
         DestinationName: Text[100];
     begin
         WhseActivityHeader.SetRange(Type, WhseActivityHeader.Type::Pick);
+        if OnlyBlank then
+            WhseActivityHeader.SetRange("RGMC Destination Name", '');
         if WhseActivityHeader.FindSet(true) then
             repeat
                 DestinationName := '';

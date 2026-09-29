@@ -51,18 +51,7 @@ report 50101 "Print LMDR"
                     Amount := 0;
 
                     // Get Item Reference
-                    ItemRef.SetRange("Item No.", "Item No.");
-                    ItemRef.SetRange("Reference Type", ItemRef."Reference Type"::"Bar Code");
-                    ItemRef.SetRange("Reference Type No.", 'LM');
-                    ItemRef.SetFilter("Starting Date", '..%1', WhseShipmentHeader."Posting Date");
-
-                    ItemRef.SetCurrentKey(
-                        "Item No.",
-                        "Starting Date");
-
-                    ItemRef.Ascending(false);
-
-                    if ItemRef.FindFirst() then begin
+                    if FindLMItemRef("Item No.", ItemRef) then begin
                         SKU := ItemRef.Description;
                         BarcodeTag := ItemRef."Reference No.";
                         Description2 := ItemRef."Description 2";
@@ -173,15 +162,25 @@ report 50101 "Print LMDR"
         BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
     end;
 
+    // Latest LM barcode reference as of the shipment's posting date. Used for both the printed SKU
+    // and the SKU grouping, so the two always agree.
+    local procedure FindLMItemRef(ItemNo: Code[20]; var ItemRef: Record "Item Reference"): Boolean
+    begin
+        ItemRef.Reset();
+        ItemRef.SetCurrentKey("Item No.", "Starting Date");
+        ItemRef.SetRange("Item No.", ItemNo);
+        ItemRef.SetRange("Reference Type", ItemRef."Reference Type"::"Bar Code");
+        ItemRef.SetRange("Reference Type No.", 'LM');
+        ItemRef.SetFilter("Starting Date", '..%1', WhseShipmentHeader."Posting Date");
+        ItemRef.Ascending(false);
+        exit(ItemRef.FindFirst());
+    end;
+
     local procedure GetSKU(ItemNo: Code[20]): Text[100]
     var
         ItemRef: Record "Item Reference";
     begin
-        ItemRef.SetRange("Item No.", ItemNo);
-        ItemRef.SetRange("Reference Type", ItemRef."Reference Type"::"Bar Code");
-        ItemRef.SetRange("Reference Type No.", 'LM');
-
-        if ItemRef.FindFirst() then
+        if FindLMItemRef(ItemNo, ItemRef) then
             exit(ItemRef.Description);
 
         exit('');

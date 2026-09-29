@@ -11,6 +11,13 @@ pageextension 50130 "RGMC Warehouse Picks Ext" extends "Warehouse Picks"
         }
     }
 
+    trigger OnOpenPage()
+    var
+        WhsePickDestName: Codeunit "RGMC Whse. Pick Dest. Name";
+    begin
+        WhsePickDestName.FillBlankNames();
+    end;
+
     trigger OnAfterGetRecord()
     var
         WhseActLine: Record "Warehouse Activity Line";
