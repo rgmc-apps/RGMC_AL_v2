@@ -56,6 +56,13 @@ page 50102 "Warehouse Pick Scanner"
                     Caption = 'Sales Price';
                 }
 
+                field(CurrentRetailPrice; CurrentRetailPrice)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                    Caption = 'Current Retail Price';
+                }
+
                 field(QtyToShip; QtyToShip)
                 {
                     ApplicationArea = All;
@@ -101,6 +108,7 @@ page 50102 "Warehouse Pick Scanner"
         BarcodeTxt: Code[50];
         ItemDesc: Text[100];
         SalesPrice: Decimal;
+        CurrentRetailPrice: Decimal;
         QtyToShip: Decimal;
         QtyHandled: Decimal;
         RemainingQty: Decimal;
@@ -122,6 +130,7 @@ page 50102 "Warehouse Pick Scanner"
         // RESET DISPLAY
         ItemDesc := '';
         SalesPrice := 0;
+        CurrentRetailPrice := 0;
         QtyToShip := 0;
         QtyHandled := 0;
         RemainingQty := 0;
@@ -145,6 +154,16 @@ page 50102 "Warehouse Pick Scanner"
             SalesPrice := PriceLine."Unit Price"
         else
             SalesPrice := 0;
+
+        // GET CURRENT RETAIL PRICE (SAME AS ITEM LIST)
+        PriceLine.Reset();
+        PriceLine.SetFilter("Assign-to No.", '<>%1', 'IC');
+        PriceLine.SetRange("Product No.", Barcode);
+        PriceLine.SetCurrentKey("Product No.", "Starting Date");
+        PriceLine.SetAscending("Starting Date", false);
+
+        if PriceLine.FindFirst() then
+            CurrentRetailPrice := PriceLine."LSC Unit Price Including VAT";
 
         // GET TAKE LINES
         TakeLine.Reset();
